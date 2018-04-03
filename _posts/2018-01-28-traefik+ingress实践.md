@@ -5,6 +5,9 @@ date: 2018-01-28 09:53:48 +0800
 categories: kubernetes
 ---
 
+* content
+{:toc}
+
 如果想从外部访问kubernetes中运行的服务，可以通过以下几种方式：
 
 - NodePort: 从NodePort范围段（默认：30000-32767）随机选取没有被占用的端口进行使用，如果不指定端口号，重建服务之后端口号会发生变化

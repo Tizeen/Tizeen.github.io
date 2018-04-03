@@ -5,6 +5,9 @@ date: 2017-12-15 23:28:57 +0800
 categories: kubernetes
 ---
 
+* content
+{:toc}
+
 **Note**：本文实践环境是**kubernetes 1.8.2**版本
 
 在`kubernetes`中使用`deployment`管理`rs`时，可以利用`deployment`滚动升级的特性，达到服务零停止升级的目的

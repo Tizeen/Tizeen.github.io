@@ -5,6 +5,9 @@ date: 2017-10-24 23:08:00 +0800
 categories: kubernetes
 ---
 
+* content
+{:toc}
+
 Kubernetes有很多资源对象，比如Pod，Deployment，Service，Daemonset等等，这里简单介绍其中一些。
 
 

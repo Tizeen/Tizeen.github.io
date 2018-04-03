@@ -5,6 +5,9 @@ date: 2017-08-28 23:16:57 +0800
 categories: 折腾
 ---
 
+* content
+{:toc}
+
 在使用[官方文档](https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository)安装`docker-ce`时，需要安装指定的版本，指定了版本但是安装的还是最新版本
 
 

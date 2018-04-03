@@ -5,6 +5,9 @@ date: 2017-12-04 22:00:40 +0800
 categories: kubernetes
 ---
 
+* content
+{:toc}
+
 官方的[kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)部署工具，默认部署的是单master节点的集群，在生产环境使用会有一定的风险（如果工作节点不是很多，可以考虑采用单master节点）
 
 

@@ -5,6 +5,9 @@ date: 2017-08-05 10:52:05 +0800
 categories: Linux Tools
 ---
 
+* content
+{:toc}
+
 使用`vagrant init`默认只有一台虚拟机，如果需要在一个`Vagrantfile`里边定义多个虚拟机，可以这样做。
 
 

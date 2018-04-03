@@ -5,6 +5,9 @@ date: 2018-01-03 23:06:53 +0800
 categories: kubernetes
 ---
 
+* content
+{:toc}
+
 最近在使用`kube-prometheus`时，需要自定义监控，然后遇到了跟`RBAC`相关的错误，导致监控失败，虽然通过搜索解决了，但还是需要对`RBAC`进行一个深入学习才行。
 
 

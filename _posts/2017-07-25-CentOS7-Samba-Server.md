@@ -5,6 +5,9 @@ date: 2017-07-25 09:03:06 +0800
 categories: Linux Server
 ---
 
+* content
+{:toc}
+
 Samba使得Linux和Windows之间文件共享十分方便。搭建Samba服务器来对文档进行统一的管理，这样文档统一存储在服务器上，但是可以直接通过Windows来编辑。
 
 这里记录一下搭建过程。

@@ -5,6 +5,9 @@ date: 2017-04-16 00:00:30 +0800
 categories: 虚拟化
 ---
 
+* content
+{:toc}
+
 公司有个服务器跑着KVM的虚拟机，但是老是用命令行管理很不方便，发现webvirtmgr挺不错的，功能也比较齐全，这里就记录一下在Cent OS7上部署webvirtmgr的过程。
 
 

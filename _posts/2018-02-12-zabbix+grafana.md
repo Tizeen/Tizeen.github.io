@@ -5,6 +5,9 @@ date:  2018-02-12 10:03:18 +0800
 categories: zabbix
 ---
 
+* content
+{:toc}
+
 Zabbix： 企业级的，开源的，分布式的监控系统，重量级选手，功能齐全
 
 Grafana： 数据可视化平台，可以用于显示监控数据，支持多种数据源，比如InfluxDB、Prometheus、Graphite等数据源
