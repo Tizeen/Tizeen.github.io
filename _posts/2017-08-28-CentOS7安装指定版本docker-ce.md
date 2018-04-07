@@ -2,7 +2,7 @@
 layout: post
 title: CentOS7安装指定版本docker-ce
 date: 2017-08-28 23:16:57 +0800
-categories: 折腾
+categories: Linux Docker
 ---
 
 * content

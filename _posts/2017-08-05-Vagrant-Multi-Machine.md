@@ -2,7 +2,7 @@
 layout: post
 title: Vagrant Multi-Machine
 date: 2017-08-05 10:52:05 +0800
-categories: Linux Tools
+categories: Linux
 ---
 
 * content

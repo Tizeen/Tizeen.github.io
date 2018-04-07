@@ -2,7 +2,7 @@
 layout: post
 title: CentOS7 Samba Server
 date: 2017-07-25 09:03:06 +0800
-categories: Linux Server
+categories: Linux
 ---
 
 * content

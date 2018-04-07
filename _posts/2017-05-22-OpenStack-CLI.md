@@ -2,7 +2,7 @@
 layout: post
 title: OpenStack CLI
 date: 2017-05-22 23:04:28 +0800
-categories: 读书笔记
+categories: 读书笔记 OpenStack
 ---
 
 * content

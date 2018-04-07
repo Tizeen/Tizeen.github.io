@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Linux iptables防护
+title: Linux iptables
 date: 2017-04-07 22:25:11 +0800
-categories: 系统
+categories: Linux
 ---
 
 * content
