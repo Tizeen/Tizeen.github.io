@@ -118,9 +118,67 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
+## 一个例子
+
+配置一个名字为`test-sa`的`ServiceAccount`，限定在`test`命名空间内，但是能操作`test`命令空间的所有资源
+
+1. 配置`ServiceAccount`
+
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: test-sa
+    namespace: test
+  ```
+
+1. 定义`role`
+
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    namespace: test
+    name: all-priviledges-roles
+  rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+  ```
+
+  `*`表示所有
+
+1. 定义`RoleBinding`
+
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: all-priviledges-rolebinding
+    namespace: test
+  roleRef:
+    kind: Role
+    name: all-priviledges-roles
+    apiGroup: rbac.authorization.k8s.io
+  subjects:
+  - kind: ServiceAccount
+    name: test-sa
+    namespace: test
+  ```
+
+没创建一个`ServiceAccount`时，都会创建一个对应的`secret`，保存有`token`，可以使用这个`token`值登录`kubernetes dashboard`，所有的操作被限制在`test`这个命名空间下。
+
+查看`token`命令：
+
+```sh
+kubectl describe serviceaccount <serviceaccount name>
+kubectl describe secret <secret name>
+```
+
+
 ## 简单总结
 
-`Role`和`ClusterRole`是角色，这些角色都有自己的权限，我们可以控制这些角色的权限
+`Role`和`ClusterRole`是角色，这些角色拥有不同的权限，我们可以控制这些角色的权限
 
 `RoleBinding`和`ClusterRoleBinding`将角色赋予给用户，使用户拥有这个角色的权限，从而可以对集群的资源进行操作
 
