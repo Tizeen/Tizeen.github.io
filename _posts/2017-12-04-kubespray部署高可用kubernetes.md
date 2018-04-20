@@ -20,9 +20,10 @@ categories: kubernetes
 
 - 安装 [pip](https://pip.pypa.io/en/stable/installing/)
 - 安装`python-netaddr`和`git`
-- 安装 **Ansible 2.4以上**的版本
+- 安装 **Ansible 2.4以上**和`Jinjia`的版本
     ```console
     pip install ansible
+    pip install jinja
     ```
 - 集群节点需要开启**IPv4 forwarding**
     ```console
@@ -32,34 +33,27 @@ categories: kubernetes
     ```
 - 部署节点与集群节点之间无密码登录
 
-## kubespray-cli
+## 步骤
 
-使用`kubespray-cli`可以很方便进行部署
+1. 克隆项目
 
-1. 安装`kubespray`
-
-    ```console
-    pip2 install kubespray
+    ```bash
+    git clone https://github.com/kubernetes-incubator/kubespray.git
     ```
-    安装完之后，查看Home目录下是否存在`.kubespray.yml`配置文件，如果不存在，则手动添加，文件内容可以在[官方README](https://github.com/kubespray/kubespray-cli)中找到
-
-1. 准备配置
-
-    ```console
-    kubespray prepare --nodes 3
-    ```
-
-    这里简单写`--nodes 3`，是因为后续会手动的更改集群节点配置。更加详细的`prepare`细节，可以参考[官方README](https://github.com/kubespray/kubespray-cli)
 
 1. 修改配置
 
-    上一步执行成功之后，会在当前用户的Home目录下生成`.kubespray`文件夹
+    复制配置样本文件
 
-    `.kubespray`目录中则保存在部署所需的`Ansible playbook`，需要修改相应的`inventory`和`docker`镜像地址
+    ```bash
+    cp -rfq inventory/sample inventory/mycluster
+    ```
 
-    编辑`.kubespray/inventory/inventory.cfg`
+    编辑`./inventory/mycluster/hosts.ini`
 
-    ```ini
+    内容如下：
+    
+    ```
     [kube-master]
     k8s-test-master1
     k8s-test-master2
@@ -92,30 +86,45 @@ categories: kubernetes
     
     规则中定义下载链接的地方主要在以下2个文件：
     
-    - .kubespray/roles/download/default/main.yml
-    - .kubespray/roles/kubernetes-apps/ansible/defaults/main.yml
+    - ./roles/download/defaults/main.yml
+    - ./roles/kubernetes-apps/ansible/defaults/main.yml
 
     将文件中的镜像地址修改为私有仓库的地址即可
+
+    其他关于集群的配置位于`./inventory/mycluster/groups`文件夹内
 
 1. 开始部署
 
     在配置修改完之后，可以开始部署了
 
-    ```console
-    kubespray deploy -i ./kubespray/inventory/inventory.cfg -K -n flannel
+    ```bash
+    ansible-playbook -i ./inventory/mycluster/hosts.ini -K -n flannel cluster.yml
     ```
 
-    - `-n`可以指定网络插件，目前支持：flannel、calico（默认）、canal、weave
+    - `-n`可以指定网络插件，目前支持：`flannel`、`calico`（默认）、`canal`、`weave`
     - `-K`：输入`ansible_user`的密码，该用户需要支持`sudo`
 
-    可以看出`kubespray deploy`其实是调用了`ansible-playbook`，更多的参数说明通过`kubespray deploy -h`查看
+## 添加Worker节点
 
-## Note
+1. 在`./inventory/mycluster/hosts.init`中修改
 
-- `kubespray deploy`执行失败后，检查失败的原因，改正之后重新执行即可
+1. 执行
+
+    ```bash
+    ansible-playbook -i ./inventory/mycluster/hosts.ini -K -n flannel scale.yml
+    ```
+
+添加节点后，`API Server`所在机器的`hosts`不会自动添加新节点的host记录，会导致`kubectl logs|exec`操作新节点的pod会提示dns解析失败，解决方法是手动在`API Server`机器上修改`/etc/hosts`，添加新节点信息
+
+**Note**: 使用kubespray部署的集群，`API Server`默认是采用`static pod`方式运行，所以添加hosts记录需要进入到`API Server`所在的pod中添加
+
+
+## 注意点
+
+- 执行失败后，检查失败的原因，改正之后重新执行即可
 - 采用`calico`网络插件时，集群节点的容器无法访问外网，需要添加相应的**nat转发**规则才可以
 
-    ```console
+    ```bash
     # 10.233.64.0/18为集群网络（cluster network）
     # 10.244.4.128/27为集群节点网络（eth0 address）  
     /usr/sbin/iptables -t nat -A POSTROUTING -s 10.233.64.0/18 ! -d 10.244.4.128/27 -j MASQUERADE
