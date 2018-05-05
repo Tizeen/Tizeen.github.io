@@ -45,6 +45,33 @@ ENV TZ Asia/Shanghai
 - ADD后边可以加一个url，下载这个url对应的文件
 - ADD后边如果加的一个压缩文件，那么在编译的时候它会将这个压缩文件解压放到镜像中
 
+## 复制目录到容器
+
+- 复制单个目录
+
+    ```
+    ADD go /usr/local/go
+    # or
+    COPY go /usr/local/go
+    ```
+
+    **Note:** 不需要在容器中先创建`go`这个目录
+
+- 复制多个目录
+
+    失败的做法：
+
+    ```
+    # 会将dir1和dir2目录中的文件复制到容器中，但是dir1和dir2本身不会被复制
+    COPY dir1 dir2 /usr/local/dir
+    ```
+
+    + 可以将复制的多个目录放到一个目录内，通过复制单个目录的方式实现；
+    
+    + 编写多个`COPY`或者`ADD`
+
+
+
 ## ENTRYPOINT和CMD
 
 `ENTRYPOINT`和`CMD`指令都定义了容器运行时执行的命令，两者既可单独使用，也可结合使用。
