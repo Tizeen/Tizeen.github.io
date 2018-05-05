@@ -32,7 +32,7 @@ categories: Docker
 
 可以在Dockerfile中通过`ENV`来设定本地时区
 
-```
+```dockerfile
 ENV TZ Asia/Shanghai
 ```
 
@@ -49,7 +49,7 @@ ENV TZ Asia/Shanghai
 
 - 复制单个目录
 
-    ```
+    ```dockerfile
     ADD go /usr/local/go
     # or
     COPY go /usr/local/go
@@ -61,7 +61,7 @@ ENV TZ Asia/Shanghai
 
     失败的做法：
 
-    ```
+    ```dockerfile
     # 会将dir1和dir2目录中的文件复制到容器中，但是dir1和dir2本身不会被复制
     COPY dir1 dir2 /usr/local/dir
     ```
@@ -87,7 +87,7 @@ ENV TZ Asia/Shanghai
 
 **Example**
 
-```
+```dockerfile
 FROM ubuntu:16.04
 ENTRYPOINT ["top", "-b"]
 CMD ["-c"]
