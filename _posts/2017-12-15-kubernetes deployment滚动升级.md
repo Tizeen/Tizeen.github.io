@@ -119,6 +119,8 @@ REVISION  CHANGE-CAUSE
 $ kubectl rollout history deployment/nginx-deployment --revision=2
 ```
 
+**Note:** `rollout history`命令输出的历史版本和`deployment`对应的`replicas`对应，如果手动删除了`deployment`某个`replica`，那么相应的`rollout history`也会消失，这样便无法回滚到那个历史版本了。
+
 - 回滚到上一个版本
 
 ```bash
