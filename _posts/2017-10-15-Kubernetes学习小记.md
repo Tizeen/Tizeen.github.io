@@ -142,6 +142,9 @@ master节点有3个重要的组件：
 ## 陷阱
 
 - 高版本的Docker会将iptables中`FORWARD`链设置为DROP，导致跨节点的pod无法通信（采用flannel网络），需要修改
+    ```bash
+    iptables -P FORWARD ACCEPT
+    ```
 
 ## 参考
 
