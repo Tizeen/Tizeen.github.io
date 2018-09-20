@@ -1,6 +1,6 @@
 ---
 layout: post
-title: kubernetes学习小记
+title: Kubernetes学习小记
 date: 2017-10-15 16:10:30 +0800
 categories: kubernetes
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 记一次kubernetes网络问题分析
+title: 记一次Kubernetes网络问题分析
 date: 2018-04-10 22:42:48 +0800
 categories: kubernetes
 ---

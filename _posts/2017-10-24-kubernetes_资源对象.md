@@ -1,6 +1,6 @@
 ---
 layout: post
-title: kubernetes资源对象
+title: Kubernetes资源对象
 date: 2017-10-24 23:08:00 +0800
 categories: kubernetes
 ---

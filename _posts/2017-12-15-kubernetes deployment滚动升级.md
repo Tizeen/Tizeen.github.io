@@ -1,6 +1,6 @@
 ---
 layout: post
-title: kubernetes deployment升级和回滚
+title: Kubernetes deployment升级和回滚
 date: 2017-12-15 23:28:57 +0800
 categories: kubernetes
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: kubespray部署高可用kubernetes
+title: Kubespray部署高可用Kubernetes
 date: 2017-12-04 22:00:40 +0800
 categories: kubernetes
 ---
