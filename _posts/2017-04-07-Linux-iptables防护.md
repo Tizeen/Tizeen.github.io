@@ -41,43 +41,40 @@ iptables会遍历每一条规则，如果没有匹配到就会执行规则所在
 
 ### Tables
 
-iptables包含5个表
+iptables包含5个表：
 
-1. raw
+1. raw：配置数据包，使数据包可被追踪
+1. filter：默认表，一般的过滤都发生在这张表
+1. nat：通常用来做网络地址转换
+1. mangle：用于更改数据包
+1. security：对网络规则进行强制访问控制
 
-2. filter：默认表，一般的过滤都发生在这张表
-
-3. nat：通常用来做网络地址转换
-
-4. manqle
-
-5. security
-
-比较常用的是filter和nat这两个表。
+比较常用的是`filter`和`nat`这两个表。
 
 ### Chains
 
 filter表内建的链有：
 
 - INPUT
-
 - OUTPUT
-
 - FORWARD
 
 nat表内建的链有：
 
 - PREROUTING：DNAT的rules放在里边
-
 - POSTROUTING : SNAT的rules放在里边
-
 - OUTPUT
 
 ### Rules
 
 每条规则都包含有条件，符合条件的数据包都会执行一个target
 
-使用`-j`或`--jump`选项指定target，常用的target有`ACCEPT`,`DROP`,`RETURN`
+使用`-j`或`--jump`选项指定target，常用的target有`ACCEPT`,`DROP`,`RETURN`,`REJECT`
+
+- ACCEPT: 允许数据包通过
+- DROP：丢弃数据包，并且不做回应
+- RETURN：停止遍历当前链，返回前一条链并遍历跳转规则的下一条规则
+- REJECT：对比匹配到的数据包回应一个错误的数据包
 
 ### Modules
 
@@ -86,12 +83,9 @@ nat表内建的链有：
 常用几个Module如下：
 
 1. conntrack: 根据数据包的状态定义规则
-
-2. limit: 可以限制数据包的速率
-
-3. tcp
-
-4. icmp
+1. limit: 可以限制数据包的速率
+1. tcp
+1. icmp
 
 其他扩展以及详细功能用法可以通过`man iptables-extensions`查看
 
