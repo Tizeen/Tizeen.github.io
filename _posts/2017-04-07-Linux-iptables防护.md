@@ -33,6 +33,8 @@ categories: Linux
 
 ![](http://ww1.sinaimg.cn/mw690/9bbe7ebdgy1fdosrs5dhkj20hz0ukwiw)
 
+第一次`Routing Decision`根据目的地址判断是进入`INPUT Chain`还是`FORWARD Chain`。接下来的Routing Decision则是决定数据包出口的网口。
+
 ## iptables组成
 
 iptables由一系列的表**(tables)**组成，每个表中包含一套预定义的链**(chain)**，链中包含了顺序遍历的规则**(rules)**，每条规则都会有一个目标操作**(target)**
